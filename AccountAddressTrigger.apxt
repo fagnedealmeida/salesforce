@@ -1,8 +1,9 @@
-trigger AccountAddressTrigger on Account (after insert, afe update) {
+trigger AccountAddressTrigger on Account (before insert, before update) {
     /*
     Trigger que para alterar o cep de entrega para corresponder ao cep de cobrança
     caso não exista cep de entrega
     */
+    // Trigger só será acionada quando as váriaveis de contexto forem atendidas.
     if (Trigger.isUpdate || Trigger.isInsert){
         for(Account acc: Trigger.new) {
             if(acc.Match_Billing_Address__c == True && acc.ShippingPostalCode != null){
