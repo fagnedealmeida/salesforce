@@ -1,0 +1,22 @@
+trigger ClosedOpportunityTrigger on Opportunity (after insert, after update) {
+
+/*
+Trigger que atende em que as oportunidades que estiverem com a Fase com status de CLOSED WON
+deveram ser criadas automaticamente Tarefas vinculadas a essa oportunidade
+*/
+    List<Task> listTask = new list<Task>();
+    
+    if(Trigger.isInsert || Trigger.isUpdate){
+    for (Opportunity opp : Trigger.New){
+        if(opp.StageName == 'Closed Won'){
+           Task tarefa = new Task();
+           tarefa.Subject = 'Tarefa de teste de acompanhamento';
+           tarefa.WhatId = opp.Id;
+           listTask.add(tarefa);
+        }     
+    }
+    if (listTask.Size()> 0){
+        insert listTask;
+    }
+     
+    }}
