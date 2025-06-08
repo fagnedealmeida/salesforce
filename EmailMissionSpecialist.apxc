@@ -1,0 +1,34 @@
+public class EmailMissionSpecialist {
+   // método públio
+   public void sendMail(String address, String subject, String body) {
+      // Cria um objeto de mensagem de e-mail
+      Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+      String[] toAddresses = new String[] {address};
+      mail.setToAddresses(toAddresses);
+      mail.setSubject(subject);
+      mail.setPlainTextBody(body);
+      // Passe esta mensagem de e-mail para o método sendEmail integrado da classe Messaging
+      Messaging.SendEmailResult[] results = Messaging.sendEmail(
+                                new Messaging.SingleEmailMessage[] { mail });
+      // Método auxiliar para retornar os resultados
+      inspectResults(results);
+   }
+   // método auxiliar
+   private static Boolean inspectResults(Messaging.SendEmailResult[] results) {
+      Boolean sendResult = true;
+      // sendEmail retornar uma matriz de objetos resultados
+      // percorre a lista para inspeciona os resultados
+      // Nesta classe, os métodos enviam apenas um e-mail
+      // então deveríamos ter apenas um resultado
+      for (Messaging.SendEmailResult res : results) {
+         if (res.isSuccess()) {
+            System.debug('Email sent successfully');
+         }
+         else {
+            sendResult = false;
+            System.debug('The following errors occurred: ' + res.getErrors());                 
+         }
+      }
+      return sendResult;
+   }
+}
