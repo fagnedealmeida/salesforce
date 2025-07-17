@@ -1,0 +1,15 @@
+public class StringListTest {
+    // Classe que recebe entrada para criar lista de string 
+    // conforme quantidade de entrada adicionando na lista
+    public static List<String> generateStringList(Integer numero){
+        String[] lista_final = new List<String>();
+        // criar o for       
+        for(Integer i = 0; i < numero; i++){
+           // interar a cada laço
+            String frase = 'Test ' + i;
+            lista_final.add(frase);
+        }
+        return lista_final;  
+    }
+
+}
