@@ -1,0 +1,1 @@
+Aprendizagem sobre o ecossistema SALESFORCE através de práticas utilizando principalmente o TRAILHEAD como jornada de estudos. Como introdução e aprofundamento da parte de desenvolvimento do plataforma.
