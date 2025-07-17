@@ -1,0 +1,11 @@
+public class ContactSearch {
+    //classe com quey para retornar contatos que atendam as condições.
+    public static List<Contact> searchForContacts(String nome, String cep){
+		String n = nome;
+        String c = cep;
+        Contact[] ct = new List<Contact>{[SELECT Id,Name FROM Contact WHERE MailingPostalCode=:c AND LastName=:n]};
+        
+        return ct;
+    }
+
+}
